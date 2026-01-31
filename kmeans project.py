@@ -109,102 +109,138 @@ plt.ylabel("Feature 2")
 plt.show()
 
 
+
+
 # ============================================================
-# K-MEANS CLUSTERING – THEORETICAL EXPLANATION
+# K-MEANS CLUSTERING – THEORETICAL EXPLANATION WITH ANALYSIS
 # ============================================================
 
-# K-Means is an UNSUPERVISED MACHINE LEARNING algorithm used
-# to group unlabeled data into K distinct clusters based on
+# K-Means is an UNSUPERVISED MACHINE LEARNING algorithm used to
+# partition unlabeled data into K distinct clusters based on
 # similarity between data points.
 
-# The algorithm represents each cluster using a CENTROID,
-# which is the mean position of all points belonging to
-# that cluster.
+# Each cluster is represented by a CENTROID, which is the mean
+# position of all points belonging to that cluster.
 
 # ------------------------------------------------------------
-# OBJECTIVE FUNCTION
+# OBJECTIVE FUNCTION (WCSS)
 # ------------------------------------------------------------
-# The main objective of K-Means is to minimize the
-# Within-Cluster Sum of Squares (WCSS), also called inertia.
+# The objective of K-Means is to minimize the
+# Within-Cluster Sum of Squares (WCSS), also known as inertia.
+
+# WCSS measures the total squared distance between each data
+# point and the centroid of its assigned cluster.
 
 # Mathematically:
-# WCSS = Σ (distance between data point and its cluster centroid)^2
+# WCSS = Σ (distance between point and its centroid)^2
 
-# Lower WCSS indicates that data points are closer to their
-# centroids, resulting in better and more compact clusters.
+# Lower WCSS values indicate more compact and well-formed clusters.
 
 # ------------------------------------------------------------
-# WORKING PRINCIPLE
+# WORKING PRINCIPLE OF K-MEANS
 # ------------------------------------------------------------
-# K-Means works iteratively using two main steps:
+# K-Means works iteratively using two key steps:
 
 # 1. ASSIGNMENT STEP:
 #    Each data point is assigned to the nearest centroid
 #    using Euclidean distance.
 
 # 2. UPDATE STEP:
-#    New centroids are calculated as the mean of all data
-#    points assigned to each cluster.
+#    New centroids are computed as the mean of all data points
+#    assigned to each cluster.
 
-# These two steps repeat until:
-# - Centroids do not move significantly (convergence), OR
+# These steps are repeated until:
+# - The centroids no longer move significantly (convergence), or
 # - The maximum number of iterations is reached.
 
 # ------------------------------------------------------------
 # DISTANCE MEASURE
 # ------------------------------------------------------------
-# K-Means commonly uses Euclidean distance, defined as:
+# K-Means commonly uses Euclidean distance:
 # d(x, y) = sqrt(Σ (x_i - y_i)^2)
 
-# Because of this distance measure, K-Means works best when:
+# Due to this distance metric, K-Means performs best when:
 # - Features are numeric
 # - Clusters are spherical
-# - Clusters have similar sizes
+# - Clusters have similar sizes and densities
 
 # ------------------------------------------------------------
-# INITIALIZATION
+# INITIALIZATION STRATEGY
 # ------------------------------------------------------------
-# Initially, K centroids are selected randomly from the dataset.
-# Poor initialization can lead to suboptimal clustering.
+# In the custom implementation, centroids are initialized
+# using RANDOM SELECTION from the dataset.
 
-# To solve this, K-Means++ initialization is often used,
-# which selects centroids far apart from each other.
-# (Scikit-learn uses K-Means++ by default.)
+# Random initialization can sometimes place centroids close
+# together or in low-density regions, which may cause the
+# algorithm to converge to a local minimum.
+
+# Scikit-learn’s K-Means uses K-MEANS++ initialization by default,
+# which selects initial centroids that are far apart, improving
+# convergence speed and clustering quality.
 
 # ------------------------------------------------------------
-# CONVERGENCE
+# WCSS COMPARISON: CUSTOM VS SCIKIT-LEARN
+# ------------------------------------------------------------
+# When comparing results, the WCSS obtained from the custom
+# K-Means implementation is observed to be slightly higher
+# than the WCSS produced by scikit-learn’s K-Means.
+
+# This difference is primarily due to the centroid initialization
+# method. Random initialization in the custom model can lead
+# to suboptimal centroid placement, whereas K-Means++ in
+# scikit-learn generally produces better initial centroids.
+
+# As a result, scikit-learn typically converges to tighter
+# clusters with lower WCSS.
+
+# ------------------------------------------------------------
+# INTERPRETATION OF THE SCATTER PLOT
+# ------------------------------------------------------------
+# The scatter plot generated using the custom K-Means model
+# shows three clearly separated clusters, indicating that
+# the algorithm successfully captures the underlying data
+# structure.
+
+# The centroids are positioned near the center of each cluster.
+# However, compared to scikit-learn, some cluster boundaries
+# may appear slightly less optimal, which aligns with the
+# higher WCSS value observed.
+
+# ------------------------------------------------------------
+# CONVERGENCE PROPERTIES
 # ------------------------------------------------------------
 # K-Means is guaranteed to converge because:
 # - WCSS decreases after each iteration
-# - There are finite possible cluster assignments
+# - There are a finite number of possible cluster assignments
 
-# However, the algorithm may converge to a LOCAL minimum
-# rather than the global minimum.
+# However, convergence is not guaranteed to reach the global
+# minimum and may stop at a local minimum.
 
 # ------------------------------------------------------------
 # ADVANTAGES
 # ------------------------------------------------------------
 # - Simple and easy to understand
-# - Fast and computationally efficient
-# - Works well for large datasets
+# - Computationally efficient
+# - Scales well to large datasets
 
 # ------------------------------------------------------------
 # LIMITATIONS
 # ------------------------------------------------------------
-# - Number of clusters (K) must be specified in advance
+# - Requires the number of clusters (K) to be specified in advance
 # - Sensitive to outliers
-# - Performs poorly on non-spherical or overlapping clusters
-# - Sensitive to initial centroid selection
+# - Sensitive to centroid initialization
+# - Not suitable for non-spherical or overlapping clusters
 
 # ------------------------------------------------------------
-# APPLICATIONS
+# CONCLUSION
 # ------------------------------------------------------------
-# - Customer segmentation
-# - Image compression
-# - Document clustering
-# - Market analysis
-# - Pattern recognition
+# This implementation demonstrates a correct from-scratch
+# realization of the K-Means algorithm. The comparison with
+# scikit-learn highlights how advanced initialization techniques
+# such as K-Means++ can significantly improve clustering quality.
+# This analysis effectively connects theoretical understanding
+# with practical implementation results.
 
 # ============================================================
-# END OF THEORETICAL EXPLANATION
+# END OF THEORETICAL EXPLANATION AND ANALYSIS
 # ============================================================

@@ -111,54 +111,56 @@ plt.show()
 
 
 # -------------------------------------------------------------------
-# K-Means Clustering From Scratch 
+# Project Explanation & Approach – K-Means Clustering From Scratch
+#
+# Project Overview:
 # This project implements the K-Means clustering algorithm from
-# scratch using Python and NumPy to understand how clustering works
-# internally, without directly relying on built-in functions.
+# scratch using Python and NumPy. The main goal is to understand
+# how K-Means works internally instead of using it as a black-box
+# library function. All important steps such as centroid selection,
+# distance calculation, cluster assignment, centroid update, and
+# convergence checking are manually implemented.
 #
-# K-Means is an unsupervised learning algorithm that groups data
-# points into K clusters based on similarity. In this project,
-# similarity is measured using Euclidean distance.
+# Approach:
 #
-# The algorithm follows these steps:
-# 1. Randomly select K data points as initial centroids.
-# 2. Calculate the distance between each data point and all centroids.
-# 3. Assign each data point to the nearest centroid.
-# 4. Update the centroid positions by taking the mean of all points
-#    in each cluster.
-# 5. Repeat the above steps until the centroids stop changing
-#    significantly or the maximum number of iterations is reached.
+# 1. Data Generation
+# A two-dimensional synthetic dataset is generated using make_blobs.
+# The dataset contains 400 data points forming three clear clusters.
+# A fixed random seed is used so the results remain consistent.
 #
-# A synthetic dataset is generated using make_blobs with three
-# natural clusters. This helps in visually checking whether the
-# algorithm is working correctly. A fixed random seed is used so
-# the results remain consistent.
+# 2. Distance Calculation
+# Euclidean distance is used to calculate the distance between
+# each data point and the cluster centroids. This distance is used
+# to decide which cluster a data point belongs to.
 #
-# After convergence, the clustering quality is measured using
-# Within-Cluster Sum of Squares (WCSS). WCSS indicates how close
-# data points are to their respective centroids. Lower WCSS values
-# represent better and more compact clusters.
+# 3. K-Means Algorithm Implementation
+# The algorithm follows an iterative process:
+# - Randomly select initial centroids from the dataset
+# - Assign each data point to the nearest centroid
+# - Update centroids by calculating the mean of points in each cluster
+# - Repeat until centroid movement becomes very small or the maximum
+#   number of iterations is reached
 #
-# OUTPUT EXPLANATION:
+# 4. Clustering Evaluation
+# After convergence, the Within-Cluster Sum of Squares (WCSS) is
+# calculated to measure how compact the clusters are. Lower WCSS
+# values indicate better clustering. The results are also compared
+# with Scikit-learn’s KMeans implementation to verify correctness.
 #
-# CUSTOM K-MEANS OUTPUT:
-# - The WCSS value printed for the custom model shows how tightly
-#   the data points are grouped around their centroids.
-# - The first 20 cluster assignments display the cluster index
-#   (0, 1, or 2) assigned to the first 20 data points. This output
-#   is printed separately to clearly meet the assignment requirement.
+# 5. Visualization
+# The final clustering result is displayed using a scatter plot.
+# Different colors represent different clusters, and the centroids
+# are shown using large "X" markers. The visualization clearly
+# shows three well-separated clusters.
 #
-# SKLEARN K-MEANS OUTPUT:
-# - The Scikit-learn WCSS value is printed for comparison with
-#   the custom implementation.
-# - The first 20 cluster assignments are shown to confirm that
-#   both methods group the data in a similar way, even if the
-#   actual label numbers differ.
+# Additional Information:
+# - Programming Language: Python
+# - Libraries Used: NumPy, Matplotlib
+# - Machine Learning Libraries Used: None (implemented from scratch)
+# - Algorithm: K-Means Clustering
 #
-# VISUALIZATION OUTPUT:
-# - The scatter plot shows three clearly separated clusters.
-# - Each color represents a different cluster.
-# - The large "X" markers indicate centroid positions.
-# - The visualization confirms that the algorithm successfully
-#   identified the correct cluster structure.
+# Key Outcomes:
+# - Successful implementation of K-Means without external ML libraries
+# - Better understanding of centroid updates and convergence behavior
+# - Correct clustering confirmed through comparison and visualization
 # -------------------------------------------------------------------
